@@ -1,28 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './componets/Header/Header';
+import Navbar from './componets/Navbar/Navbar';
+import Profile from './componets/Profile/Profile';
+import Dialog from './componets/Dialogs/Dialogs';
+import News from './componets/News/News';
+import Music from './componets/Music/Music';
+import Settings from './componets/Settings/Settings';
+import {BrowserRouter, Route} from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+const App = (props) => {
+  return (
+    <BrowserRouter>
+    <div className='app-wrapper'>
+      <Header />
+      <Navbar />
+      <div className='app-wrapper-content'>
+        <Route path = '/dialogs' component = {Dialog} />
+        <Route path = '/profile' render = { () => <Profile posts = {props.posts}/>} />
+        <Route path = '/news' component = {News} />
+        <Route path = '/music' component = {Music} />
+        <Route path = '/settings' component = {Settings} />
       </div>
-    );
-  }
+    </div>
+    </BrowserRouter>
+  );
 }
+
 
 export default App;
